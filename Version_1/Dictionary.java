@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Dictionary extends Exception
 {
-  private ArrayList<String> dictionary = new ArrayList<>();
+  ArrayList<String> dictionary = new ArrayList<>();
   private boolean ERR_CHECK = true;
   private String checkOver = "Stop.";
 
@@ -46,15 +46,26 @@ public class Dictionary extends Exception
     }
   }
 
+  boolean contains(String str)
+  {
+    if(dictionary.contains(str)) return true;
+    else return false;
+  }
+
+  int maxLength()
+  {
+    int length = 0;
+    for(String word : dictionary)
+    {
+      if(word.length() > length) length = word.length();
+    }
+    return length;
+  }
+
   Dictionary()
   {
     buildDictionary();
-    if (ERR_CHECK) System.out.println(dictionary.size());
-    checkInput();
-  }
 
-  public static void main(String[] args)
-  {
-    Dictionary dict = new Dictionary();
+    //checkInput();
   }
 }
