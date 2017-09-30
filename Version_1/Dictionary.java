@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -14,11 +11,12 @@ public class Dictionary extends Exception
   private void buildDictionary()
   {
     BufferedReader inFile;
-    File file = new File("OpenEnglishWordList.txt");
+    InputStream in = getClass().getResourceAsStream("OpenEnglishWordList.txt");
+    //File file = new File("src/OpenEnglishWordList.txt");
     String str;
     try
     {
-      inFile = new BufferedReader(new FileReader(file));
+      inFile = new BufferedReader(new InputStreamReader(in));
       while ((str = inFile.readLine()) != null)
       {
         dictionary.add(str.trim());
