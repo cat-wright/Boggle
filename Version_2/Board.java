@@ -5,9 +5,18 @@ public class Board
   private Map<Coordinate, Character> board = new HashMap<>();
   private ArrayList<Character> candidates = new ArrayList<>();
   private ArrayList<Coordinate> possible = new ArrayList<>();
-  private int B_S;
+  //CHEATING allocated to 5 originally for visited array
+  private int B_S = 5;
   private final int MAX_NUMS = 4;
   private BoggleBlock block = new BoggleBlock();
+  private ArrayList<String> finalList = new ArrayList<>();
+  protected boolean truth;
+  private boolean visited[][] = new boolean[B_S][B_S];
+
+  void setBoardSize(int BS)
+  {
+    B_S = BS;
+  }
 
   private void set(int x, int y, char c)
   {
@@ -16,7 +25,7 @@ public class Board
     board.put(key, c);
   }
 
-  private Character get(int x, int y)
+  Character get(int x, int y)
   {
     if ((x >= 0 && x < B_S) && (y >= 0 && y < B_S))
     {
@@ -25,26 +34,109 @@ public class Board
     } else return '0';
   }
 
-  int numOfChar(char c)
+  Character getC(Coordinate c)
+  {
+    return get(c.returnX(), c.returnY());
+  }
+
+  private int numOfChar(char c)
   {
     int finalCount = 0;
     for (Character ch : candidates) if (c == ch) finalCount++;
     return finalCount;
   }
 
+  protected void findWord(String word)
+  {
+    truth = false;
+    if(word.length() > 2)
+    {
+      for (int i = 0; i < B_S; i++)
+      {
+        for (int j = 0; j < B_S; j++)
+        {
+          if (get(i, j) == word.charAt(0))
+          {
+            recurseWord(new Coordinate(i, j), 1, word);
+          }
+          resetVisited();
+        }
+      }
+    }
+  }
+  private void buildFinalList()
+  {
+    Dictionary dictionary = new Dictionary();
+    for(String word : dictionary.returnDict()) findWord(word);
+    printFinalList();
+  }
+
+  boolean returnTruth() { return truth; }
+
+  private void recurseWord(Coordinate coord, int index, String word)
+  {
+    visited[coord.returnX()][coord.returnY()] = true;
+    ArrayList<Coordinate> bP = coord.buildPossibles();
+    for(Coordinate c : bP)
+    {
+      if(getC(c) == word.charAt(index))
+      {
+        if(!visited[c.returnX()][c.returnY()])
+        {
+          if (index == word.length() - 1)
+          {
+            truth = true;
+            visited[c.returnX()][c.returnY()] = true;
+            //System.out.println(word + '\n' + printVisited());
+            finalList.add(word);
+          }
+          else recurseWord(c, index + 1, word);
+          visited[c.returnX()][c.returnY()] = false;
+        }
+
+      }
+    }
+  }
+
+  String printVisited()
+  {
+    StringBuilder sB = new StringBuilder();
+    for(int i = 0; i < B_S; i++)
+    {
+      for(int j = 0; j < B_S; j++)
+      {
+        if(visited[i][j]) sB.append(1);
+        else sB.append(0);
+      }
+      sB.append('\n');
+    }
+    return sB.toString();
+  }
+
   private void setBoard()
   {
+    board.clear();
     char boardCandidate;
     for (int i = 0; i < B_S; i++)
     {
       for (int j = 0; j < B_S; j++)
       {
         boardCandidate = block.returnChar();
-        while (!checkValid(boardCandidate)) boardCandidate = block.returnChar();
+        while (!checkValid(boardCandidate) || numOfChar(boardCandidate) > MAX_NUMS)
+        {
+          boardCandidate = block.returnChar();
+        }
         set(i, j, boardCandidate);
         candidates.add(boardCandidate);
+        resetVisited();
       }
     }
+    findQs();
+  }
+
+  void resetVisited()
+  {
+    for(int i = 0; i < B_S; i++) for(int j = 0; j < B_S; j++) visited[i][j] = false;
   }
 
   boolean checkValid(char b_Cand)
@@ -75,20 +167,7 @@ public class Board
     return boardString;
   }
 
-  private void UNIT_TESTING()
-  {
-    System.out.println(toString());
-    char ch = get(2, 3);
-    System.out.println("Character at 2, 3: " + ch + ", " + numOfChar(ch) + " time/s");
-    /*Iterator<Character> iter = candidates.iterator();
-    while (iter.hasNext())
-    {
-      char next = iter.next();
-      if (numOfChar(next) > MAX_NUMS) System.out.println("ERROR! TOO MANY " + next + "'s!");
-    }*/
-  }
-
-  void findQs()
+  private void findQs()
   {
     for (int i = 0; i < B_S; i++)
     {
@@ -98,14 +177,14 @@ public class Board
         {
           Coordinate key = new Coordinate(i, j);
           possible = key.buildPossibles();
-          System.out.println("q at " + i + ", " + j);
+          //System.out.println("q at " + i + ", " + j);
           setU();
         }
       }
     }
   }
 
-  void setU()
+  private void setU()
   {
     Collections.shuffle(possible);
     int x; int y;
@@ -116,23 +195,34 @@ public class Board
       double random = Math.random();
       if(random > .5){
         set(x, y, 'u');
-        System.out.println(coord.toString());
+        //System.out.println(coord.toString());
         break;
       }
     }
   }
 
+  /*
+  String scanInput()
+  {
+    Scanner scanner = new Scanner(System.in);
+    System.out.print("Enter a word: ");
+    return scanner.nextLine();
+  }
+  */
+
+  private void printFinalList()
+  {
+    for(int i = 0; i < finalList.size(); i++) System.out.println(finalList.get(i));
+  }
+
   Board(int boardSize)
   {
     B_S = boardSize;
-    setBoard();
-    UNIT_TESTING();
-    findQs();
-    System.out.println(toString());
-  }
-
-  public static void main(String[] args)
-  {
-    Board b = new Board(5);
+    while(finalList.size() < 50)
+    {
+      setBoard();
+      buildFinalList();
+    }
+    //System.out.println(toString());
   }
 }

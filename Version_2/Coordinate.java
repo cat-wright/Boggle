@@ -48,6 +48,7 @@ public class Coordinate
     return String.format("[%d, %d] ", x, y);
   }
 
+  @Override
   public boolean equals(Object o)
   {
     if (this == o) return true;
