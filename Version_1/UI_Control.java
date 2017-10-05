@@ -76,7 +76,7 @@ public class UI_Control extends Application implements EventHandler<ActionEvent>
   private boolean checkText()
   {
     String message = word.getText();
-    if(message.length() > MIN_WORD_LENGTH) if(dictionary.contains(message)) return true;
+    if(message.length() >= MIN_WORD_LENGTH) if(dictionary.contains(message)) return true;
     return false;
   }
 
