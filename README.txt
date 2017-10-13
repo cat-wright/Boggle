@@ -22,7 +22,8 @@ of the found word.
 
 Opening screen: 4 TILES: selects a 4x4 board and goes to the main game screen
 				5 TILES: selects a 5x5 board and goes to the main game screen
-				Music selection: changes the music to rap ** WARNING: EXPLICIT LYRICS**
+				Music selection: changes the music to rap 
+				** WARNING: EXPLICIT LYRICS**
 
 Main Screen: Start Game: Generates a new game, can only be clicked if a game
 			   is not in progress
