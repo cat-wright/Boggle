@@ -10,7 +10,8 @@ HOW TO USE THE PROGRAM: Run UI_Control.java
 THIRD-PARTY CONTENT: Music: 
 	I do not own the rights to the music used in this program.
 	All rights reserved for the Thomas the Tank Engine theme song, 
-	"Come On" By Biggie Smalls, and the remix of the two made by Norkkom.
+	"Come On" By Biggie Smalls, and the remix of the two from 
+	youtube made by Norkkom.
 
 //General Instructions:
 
@@ -33,21 +34,22 @@ of the found word.
 //Buttons:
 
 Opening screen: 4 TILES: selects a 4x4 board and goes to the main game screen
-				5 TILES: selects a 5x5 board and goes to the main game screen
-				Music selection: changes the music to rap 
-				** WARNING: EXPLICIT LYRICS**
+		5 TILES: selects a 5x5 board and goes to the main game screen
+		Music selection: changes the music to rap 
+		** WARNING: EXPLICIT LYRICS**
 
-Main Screen: Start Game: Generates a new game, can only be clicked if a game
-			   is not in progress
-			 End Game:  Ends the current game, blacking out the board and 
-			   stopping the clock
-			 Show All Words:  Only available if a game has ended.  Goes to 
-			   screen displaying all words possible on the former board
-			 Play Word: Trys to play current word selected.  If valid, the 
-			   word is added to the players score.  
-			 Clear:  Clears current board selection
+Main Screen: 	Start Game: Generates a new game, can only be clicked if a game
+			is not in progress
+	     	End Game: Ends the current game, blacking out the board and 
+			stopping the clock
+		Show All Words: Only available if a game has ended.  Goes to 
+			screen displaying all words possible on the former board
+		Play Word: Trys to play current word selected.  If valid, the 
+			word is added to the players score.  
+		Clear:  Clears current board selection
 
-Show All Words Screen: Hide List: Returns to main screen
+Show All Words Screen: 
+		Hide List: Returns to main screen
 
 // Board Play:
 Once a game has started any letter on the board (pink or black) is valid to play.  When clicked, the selected letter will turn purple.  Any 
@@ -59,22 +61,10 @@ If a player has selected letters but is unhappy with their selection or
 wants to change their selection, the clear button will erase their 
 current selection.  
 
-**WARNING: This font, while fantastic and retro, has very similar looking U's and V's.  
+**WARNING: This font, while fantastic and retro, has very similar looking U's and V's.  V's have a pointed bottom
+left corner.  
 
 // Known Bugs:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+List of found words can only hold a certain amount before it overflows.  
+If rap music is playing, track ends long before timer runs out and does not restart.
+None others found after playing several times, but I'm sure there are more.  
