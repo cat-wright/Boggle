@@ -1,7 +1,5 @@
 BOGGLE
 
-//General Instructions:
-
 HOW TO USE THE PROGRAM: Run UI_Control.java
 			Relevent Files:
 				Coordinate.java
@@ -9,6 +7,12 @@ HOW TO USE THE PROGRAM: Run UI_Control.java
 				Board.java
 				Dictionary.java
 				UI_Control.java
+THIRD-PARTY CONTENT: Music: 
+	I do not own the rights to the music used in this program.
+	All rights reserved for the Thomas the Tank Engine theme song, 
+	"Come On" By Biggie Smalls, and the remix of the two made by Norkkom.
+
+//General Instructions:
 
 Boggle is a word game in which the player finds as many words as possible
 in a given time limit on a board of tiles each with its own letter.
