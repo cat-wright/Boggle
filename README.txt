@@ -2,6 +2,14 @@ BOGGLE
 
 //General Instructions:
 
+HOW TO USE THE PROGRAM: Run UI_Control.java
+			Relevent Files:
+				Coordinate.java
+				BoggleBlock.java
+				Board.java
+				Dictionary.java
+				UI_Control.java
+
 Boggle is a word game in which the player finds as many words as possible
 in a given time limit on a board of tiles each with its own letter.
 
